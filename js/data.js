@@ -1,0 +1,13 @@
+/**
+ * data.js — Данные об автомобилях
+ */
+const carsData = [
+  { id:1, name:'Hyundai Solaris', class:'Эконом', price:1900, priceLabel:'1 900 ₽/сут', status:'available', statusLabel:'Доступен', img:'https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=500&q=80', fuel:'Бензин', trans:'Автомат', seats:5, badge:'badge-available', tag:'economy' },
+  { id:2, name:'Toyota Camry', class:'Комфорт', price:3800, priceLabel:'3 800 ₽/сут', status:'available', statusLabel:'Доступен', img:'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=500&q=80', fuel:'Бензин', trans:'Автомат', seats:5, badge:'badge-available', tag:'comfort' },
+  { id:3, name:'BMW 5 Series', class:'Бизнес', price:7500, priceLabel:'7 500 ₽/сут', status:'available', statusLabel:'Новый', img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&q=80', fuel:'Бензин', trans:'Автомат', seats:5, badge:'badge-new', tag:'premium', badgeText:'Новый' },
+  { id:4, name:'Mercedes E-Class', class:'Бизнес', price:8900, priceLabel:'8 900 ₽/сут', status:'booked', statusLabel:'Занят', img:'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=500&q=80', fuel:'Бензин', trans:'Автомат', seats:5, badge:'badge-booked', tag:'premium' },
+  { id:5, name:'Kia Sportage', class:'Внедорожник', price:4200, priceLabel:'4 200 ₽/сут', status:'available', statusLabel:'Доступен', img:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=500&q=80', fuel:'Бензин', trans:'Автомат', seats:5, badge:'badge-available', tag:'suv' },
+  { id:6, name:'Toyota RAV4', class:'Внедорожник', price:5100, priceLabel:'5 100 ₽/сут', status:'available', statusLabel:'Доступен', img:'https://images.unsplash.com/photo-1612544448445-b8232cff3b6c?w=500&q=80', fuel:'Дизель', trans:'Автомат', seats:5, badge:'badge-available', tag:'suv' },
+  { id:7, name:'Porsche Cayenne', class:'Премиум', price:18000, priceLabel:'18 000 ₽/сут', status:'available', statusLabel:'Люкс', img:'https://images.unsplash.com/photo-1617886903355-9354bb57751f?w=500&q=80', fuel:'Бензин', trans:'Автомат', seats:5, badge:'badge-new', tag:'premium', badgeText:'Люкс' },
+  { id:8, name:'Volkswagen Polo', class:'Эконом', price:2100, priceLabel:'2 100 ₽/сут', status:'available', statusLabel:'Доступен', img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=500&q=80', fuel:'Бензин', trans:'Механика', seats:5, badge:'badge-available', tag:'economy' },
+];
