@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LuxRide — аренда элитных автомобилей в Москве, Санкт-Петербурге, Сочи и Дубае. Премиальный автопарк, оформление онлайн.">
-  <title>LuxRide — Аренда элитных автомобилей</title>
+  <meta name="description" content="Monolith Drive — аренда элитных автомобилей в Москве, Санкт-Петербурге, Сочи и Дубае. Премиальный автопарк, оформление онлайн.">
+  <title>Monolith Drive — Аренда элитных автомобилей</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@300..800&display=swap" rel="stylesheet">
@@ -21,8 +21,9 @@
 <header class="header" id="mainHeader">
   <div class="container header-inner">
     <!-- Логотип -->
-    <a href="#" class="logo" aria-label="LuxRide — главная">
-      <span class="logo-text">LUXRIDE</span>
+    <a href="#" class="logo" aria-label="Monolith Drive — главная">
+      <span class="logo-top">Monolith</span>
+      <span class="logo-sub">Drive</span>
     </a>
 
     <!-- Навигация -->
@@ -35,7 +36,6 @@
 
     <!-- Правая часть -->
     <div class="header-actions">
-      <span class="header-city">Москва</span>
       <a href="tel:+74951234567" class="header-phone">
         +7 (495) 123-45-67
         <span class="header-phone-sub">работаем 24/7</span>
@@ -47,27 +47,25 @@
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-heading">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-pattern" aria-hidden="true"></div>
-  <img class="hero-car-img" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="Элитный автомобиль" loading="lazy" width="900" height="600">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <source src="assets/Video Project 2 (1).mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
+
+  <div class="hero-overlay" aria-hidden="true"></div>
+
   <div class="container">
     <div class="hero-content">
-      <h1 class="hero-title" id="hero-heading">Аренда премиальных<br>автомобилей</h1>
-      <p class="hero-cities">Москва &nbsp;·&nbsp; Петербург &nbsp;·&nbsp; Сочи &nbsp;·&nbsp; Дубай</p>
+      <h1 class="hero-title" id="hero-heading">Аренда премиальных автомобилей</h1>
+      <p class="hero-cities">Москва · Сочи · Дубай</p>
       <div class="hero-cta">
-        <button class="btn btn-primary btn-hero" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Выбрать автомобиль</button>
-      </div>
-      <div class="hero-stats" aria-label="Статистика компании">
-        <div><div class="hero-stat-value">170+</div><div class="hero-stat-label">Автомобилей</div></div>
-        <div><div class="hero-stat-value">4</div><div class="hero-stat-label">Города</div></div>
-        <div><div class="hero-stat-value">15 мин</div><div class="hero-stat-label">Оформление</div></div>
-        <div><div class="hero-stat-value">4.9★</div><div class="hero-stat-label">Рейтинг</div></div>
+        <button class="btn btn-primary btn-hero">Выбрать автомобиль</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SEARCH -->
+<!-- SEARCH
 <section class="search-section" aria-label="Поиск автомобиля">
   <div class="container">
     <div class="search-box">
@@ -109,6 +107,43 @@
       <button class="search-btn" onclick="Catalog.applyFilters()">Найти</button>
     </div>
   </div>
+</section> -->
+
+<!-- CATEGORIES -->
+<section id="categories" class="categories-section" aria-labelledby="categories-heading">
+  <div class="container">
+    <h2 class="categories-title" id="categories-heading">Категории автомобилей</h2>
+    <div class="categories-grid" role="list">
+      <a href="#premium" class="category-card" role="listitem" aria-label="Премиум">
+        <img src="https://picsum.photos/seed/premium/220/100" alt="Премиум" loading="lazy" width="220" height="100">
+        <div class="category-label">Премиум</div>
+      </a>
+      <a href="#suv" class="category-card" role="listitem" aria-label="Внедорожники">
+        <img src="https://picsum.photos/seed/suv/220/100" alt="Внедорожники" loading="lazy" width="220" height="100">
+        <div class="category-label">Внедорожники</div>
+      </a>
+      <a href="#business" class="category-card" role="listitem" aria-label="Бизнес">
+        <img src="https://picsum.photos/seed/business/220/100" alt="Бизнес" loading="lazy" width="220" height="100">
+        <div class="category-label">Бизнес</div>
+      </a>
+      <a href="#sport" class="category-card" role="listitem" aria-label="Спорткары">
+        <img src="https://picsum.photos/seed/sport/220/100" alt="Спорткары" loading="lazy" width="220" height="100">
+        <div class="category-label">Спорткары</div>
+      </a>
+      <a href="#minivan" class="category-card" role="listitem" aria-label="Минивэны">
+        <img src="https://picsum.photos/seed/minivan/220/100" alt="Минивэны" loading="lazy" width="220" height="100">
+        <div class="category-label">Минивэны</div>
+      </a>
+      <a href="#comfort" class="category-card" role="listitem" aria-label="Комфорт">
+        <img src="https://picsum.photos/seed/comfort/220/100" alt="Комфорт" loading="lazy" width="220" height="100">
+        <div class="category-label">Комфорт</div>
+      </a>
+      <a href="#electric" class="category-card" role="listitem" aria-label="Электромобили">
+        <img src="https://picsum.photos/seed/electric/220/100" alt="Электромобили" loading="lazy" width="220" height="100">
+        <div class="category-label">Электромобили</div>
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- FILTERS -->
@@ -142,7 +177,7 @@
   <div class="container">
     <div class="why-grid">
       <div>
-        <p class="why-label">Почему LuxRide</p>
+        <p class="why-label">Почему Monolith Drive</p>
         <h2 class="why-title fade-in" id="why-heading">Аренда без стресса и скрытых платежей</h2>
         <p class="why-desc">Работаем с 2015 года. Наш приоритет — прозрачные условия, чистые автомобили и поддержка 24/7.</p>
         <div class="why-features">
@@ -153,7 +188,7 @@
         </div>
       </div>
       <div class="why-image-wrap">
-        <div class="why-image"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=80" alt="Автомобиль LuxRide" loading="lazy" width="600" height="750"></div>
+        <div class="why-image"><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=80" alt="Автомобиль Monolith Drive" loading="lazy" width="600" height="750"></div>
         <div class="why-stat-card"><div class="why-stat-number">2 800+</div><div class="why-stat-label">Клиентов в месяц</div></div>
       </div>
     </div>
@@ -210,15 +245,15 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="logo"><span class="logo-text" style="color:#fff;font-size:1.4rem;letter-spacing:0.25em">LUXRIDE</span></div>
+        <div class="logo"><span class="logo-top" style="color:#fff;font-size:1.4rem;letter-spacing:0.25em">Monolith</span><span class="logo-sub" style="color:#fff;font-size:0.95rem;letter-spacing:0.28em">Drive</span></div>
         <p class="footer-tagline">Аренда элитных автомобилей в Москве, Санкт-Петербурге, Сочи и Дубае.</p>
       </div>
       <div><p class="footer-heading">Каталог</p><nav class="footer-links"><a href="#">Эконом</a><a href="#">Комфорт</a><a href="#">Бизнес</a><a href="#">Внедорожники</a><a href="#">Премиум</a></nav></div>
       <div><p class="footer-heading">Компания</p><nav class="footer-links"><a href="#">О нас</a><a href="#">Условия аренды</a><a href="#">Страхование</a><a href="#">Для юрлиц</a><a href="#">Контакты</a></nav></div>
-      <div><p class="footer-heading">Контакты</p><address class="footer-links" style="font-style:normal"><a href="tel:+74951234567">+7 (495) 123-45-67</a><a href="mailto:info@luxride.ru">info@luxride.ru</a><span>Москва, ул. Примерная, 1</span><span>Пн–Вс: 00:00–24:00</span></address></div>
+      <div><p class="footer-heading">Контакты</p><address class="footer-links" style="font-style:normal"><a href="tel:+74951234567">+7 (495) 123-45-67</a><a href="mailto:info@monolithdrive.ru">info@monolithdrive.ru</a><span>Москва, ул. Примерная, 1</span><span>Пн–Вс: 00:00–24:00</span></address></div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2025 LuxRide. Все права защищены.</p>
+      <p class="footer-copy">© 2025 Monolith Drive. Все права защищены.</p>
       <div class="footer-legal"><a href="#">Политика конфиденциальности</a><a href="#">Пользовательское соглашение</a></div>
     </div>
   </div>

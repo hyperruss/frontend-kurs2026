@@ -42,8 +42,10 @@ function createCarCardHTML(car) {
 }
 
 function applyFilters() {
-  const category = document.getElementById('categoryFilter').value;
-  const search   = document.getElementById('searchInput').value.toLowerCase();
+  const categoryEl = document.getElementById('categoryFilter');
+  const searchEl = document.getElementById('searchInput');
+  const category = categoryEl ? categoryEl.value : '';
+  const search   = searchEl ? searchEl.value.toLowerCase() : '';
   const filtered = carsData.filter(car => {
     const matchCat    = !category || car.class === category;
     const matchSearch = !search   || car.name.toLowerCase().includes(search);
