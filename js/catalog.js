@@ -75,7 +75,7 @@ function renderCarCard(car) {
         <span class="showcase-photo-label">Фото автомобиля</span>
       </div>
       <div class="showcase-card-body">
-        <h3>${escapeHtml(car.name)}</h3>
+        <h3 class="car-name">${escapeHtml(car.name)}</h3>
         <div class="showcase-footer"><span>${escapeHtml(car.priceLabel)}</span><small>/сут</small></div>
         <div class="showcase-meta">
           <span>${escapeHtml(car.engine)}</span>

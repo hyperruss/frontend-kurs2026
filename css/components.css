@@ -32,7 +32,7 @@
 .favorite-btn.active svg { fill: var(--color-primary); }
 .car-card-body { padding: var(--space-5); }
 .car-class { font-size: var(--text-xs); color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-1); }
-.car-name { font-size: var(--text-lg); font-weight: 700; margin-bottom: var(--space-3); color: var(--color-text); font-family: var(--font-display); }
+.car-name { font-size: var(--text-xs); font-weight: 700; margin-bottom: var(--space-1); color: var(--color-text); font-family: var(--font-body); }
 .car-specs { display: flex; gap: var(--space-4); margin-bottom: var(--space-4); }
 .car-spec { display: flex; align-items: center; gap: var(--space-1); font-size: var(--text-xs); color: var(--color-text-muted); }
 .car-spec svg { color: var(--color-text-faint); flex-shrink: 0; }
