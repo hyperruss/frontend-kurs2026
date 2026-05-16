@@ -31,7 +31,7 @@ function renderHero() {
           <h1 class="hero-title" id="hero-heading">Аренда премиальных автомобилей</h1>
           <p class="hero-cities">Москва · Сочи · Дубай</p>
           <div class="hero-cta">
-            <a class="btn btn-primary btn-hero" href="/#catalog">Выбрать автомобиль</a>
+            <a class="btn btn-primary btn-hero" href="/car">Выбрать автомобиль</a>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@ function renderCategories() {
         <h2 class="categories-title" id="categories-heading">Категории автомобилей</h2>
         <div class="categories-grid" role="list">
           ${items.map(([id, label]) => `
-            <a href="/#catalog" class="category-card" role="listitem" aria-label="${label}">
+            <a href="/car" class="category-card" role="listitem" aria-label="${label}">
               <img src="${categoryImages[id]}" alt="${label}" loading="lazy" width="220" height="100">
               <div class="category-label">${label}</div>
             </a>
@@ -68,9 +68,9 @@ function renderCategories() {
 
 
 
-function renderCarCard(car) {
+function renderCarCard(car, { className = '' } = {}) {
   return `
-    <a class="showcase-card fade-in" href="/car/${escapeHtml(car.id)}" role="listitem" aria-label="${escapeHtml(car.name)}" data-status="${car.status}" data-collection="${car.collection}">
+    <a class="showcase-card ${className} fade-in" href="/car/${escapeHtml(car.id)}" role="listitem" aria-label="${escapeHtml(car.name)}" data-status="${car.status}" data-collection="${car.collection}" data-price="${car.price}" data-brand="${escapeHtml(car.name.split(' ')[0])}" data-class="${escapeHtml(car.className)}">
       <div class="showcase-card-media" data-initial="${escapeHtml(car.initial)}">
         <span class="showcase-photo-label">Фото автомобиля</span>
       </div>
@@ -87,6 +87,76 @@ function renderCarCard(car) {
   `;
 }
 
+function renderFleetHero() {
+  return `
+    <section class="fleet-hero" aria-labelledby="fleet-heading">
+      <video class="fleet-hero-video" autoplay muted loop playsinline preload="metadata">
+        <source src="${heroVideo}" type="video/mp4">
+      </video>
+      <div class="fleet-hero-overlay" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="fleet-breadcrumbs" aria-label="Хлебные крошки">
+          <a href="/">Главная</a>
+          <span aria-hidden="true">—</span>
+          <span>Автопарк</span>
+        </nav>
+        <h1 class="fleet-title" id="fleet-heading">Автопарк</h1>
+        <div class="fleet-tabs" aria-label="Тип аренды">
+          <a class="fleet-tab active" href="/car">Посуточно</a>
+          <a class="fleet-tab" href="/rent-conditions">Помесячно</a>
+          <a class="fleet-tab" href="/rent-conditions">С водителем</a>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderFleetFilters() {
+  return `
+    <div class="fleet-toolbar" aria-label="Фильтры автопарка">
+      <div class="fleet-filter-group">
+        <button class="fleet-filter active" type="button" data-fleet-filter="all">
+          <span>Класс</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <button class="fleet-filter" type="button" data-fleet-filter="brand">
+          <span>Марка</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <button class="fleet-filter" type="button" data-fleet-filter="price">
+          <span>Цена</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <button class="fleet-filter fleet-filter-wide" type="button" data-fleet-filter="all">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+          <span>Все фильтры</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
+      <button class="fleet-sort" type="button" data-fleet-sort>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3v18"/><path d="m4 7 4-4 4 4"/><path d="M16 21V3"/><path d="m20 17-4 4-4-4"/></svg>
+        <span>По умолчанию</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+  `;
+}
+
+export function renderFleetPage() {
+  document.title = 'Автопарк — Monolith Drive';
+  return `
+    ${renderFleetHero()}
+    <section class="fleet-page" aria-label="Список автомобилей">
+      <div class="container">
+        ${renderFleetFilters()}
+        <div class="fleet-grid" role="list">
+          ${carsData.map(car => renderCarCard(car, { className: 'showcase-card--compact fleet-card' })).join('')}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 function renderCollection(collection) {
   const cars = getCarsByCollection(collection.id);
   return `
@@ -97,7 +167,7 @@ function renderCollection(collection) {
           <h2 class="section-title" id="${collection.id}-heading">${escapeHtml(collection.title)}</h2>
         </div>
         <div class="showcase-actions">
-          <a href="/#catalog" class="section-link">${escapeHtml(collection.link)} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a>
+          <a href="/car" class="section-link">${escapeHtml(collection.link)} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a>
           <div class="showcase-nav" aria-label="Листать ${escapeHtml(collection.title)}">
             <button class="showcase-nav-btn" type="button" data-showcase-prev aria-label="Предыдущие автомобили"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
             <button class="showcase-nav-btn" type="button" data-showcase-next aria-label="Следующие автомобили"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
@@ -198,7 +268,7 @@ function renderInfoSections() {
           <h2 class="cta-title" id="cta-heading">Готовы поехать?</h2>
           <p class="cta-desc">Выберите автомобиль и получите персональное предложение на аренду.</p>
           <div class="cta-btns">
-            <a class="btn btn-primary btn-hero" href="/#catalog">Выбрать авто</a>
+            <a class="btn btn-primary btn-hero" href="/car">Выбрать авто</a>
             <a href="tel:+74951234567" class="btn btn-outline btn-hero">Позвонить нам</a>
           </div>
         </div>
@@ -261,7 +331,7 @@ export function renderRentConditions() {
             </section>
 
             <div class="conditions-cta">
-              <a class="btn btn-primary btn-hero" href="/#catalog">Выбрать автомобиль</a>
+              <a class="btn btn-primary btn-hero" href="/car">Выбрать автомобиль</a>
               <a class="btn btn-outline btn-hero" href="tel:+74951234567">Позвонить менеджеру</a>
             </div>
           </article>
@@ -288,7 +358,7 @@ export function renderCarDetails(id) {
             <p class="stub-label">Ошибка маршрута</p>
             <h1 class="stub-title">Автомобиль не найден</h1>
             <p class="stub-text">Такой страницы пока нет. Вернитесь в каталог и выберите автомобиль из подборки.</p>
-            <a class="btn btn-primary btn-hero" href="/#catalog">Вернуться к каталогу</a>
+            <a class="btn btn-primary btn-hero" href="/car">Вернуться к каталогу</a>
           </div>
         </div>
       </section>
@@ -299,7 +369,7 @@ export function renderCarDetails(id) {
   return `
     <section class="car-detail-page">
       <div class="container">
-        <a class="car-back-link" href="/#catalog">← Вернуться к подборке</a>
+        <a class="car-back-link" href="/car">← Вернуться к автопарку</a>
         <div class="car-detail-grid">
           <div class="car-detail-media" data-initial="${escapeHtml(car.initial)}">
             <span>Фото автомобиля</span>
@@ -318,7 +388,7 @@ export function renderCarDetails(id) {
             </div>
             <div class="stub-actions">
               <a class="btn btn-primary btn-hero" href="tel:+74951234567">Забронировать</a>
-              <a class="btn btn-outline btn-hero" href="/#catalog">Назад</a>
+              <a class="btn btn-outline btn-hero" href="/car">Назад</a>
             </div>
           </article>
         </div>

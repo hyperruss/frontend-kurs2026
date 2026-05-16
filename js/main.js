@@ -12,7 +12,7 @@ function initHeaderState() {
   if (!header) return;
 
   const onScroll = () => {
-    header.classList.toggle('header--scrolled', window.scrollY > 60 || window.location.pathname.startsWith('/car/'));
+    header.classList.toggle('header--scrolled', window.scrollY > 60 || window.location.pathname.startsWith('/car'));
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -28,7 +28,7 @@ function initPageEffects() {
 
 function updateHeaderState() {
   const header = document.getElementById('mainHeader');
-  header?.classList.toggle('header--scrolled', window.scrollY > 60 || window.location.pathname.startsWith('/car/'));
+  header?.classList.toggle('header--scrolled', window.scrollY > 60 || window.location.pathname.startsWith('/car'));
 }
 
 function initFadeInAnimations() {
@@ -54,7 +54,7 @@ function initFadeInAnimations() {
 
 function updateActiveNavLink() {
   const route =
-    window.location.pathname.startsWith('/car/') ? 'catalog' :
+    window.location.pathname.startsWith('/car') ? 'catalog' :
     window.location.pathname.startsWith('/rent-conditions') ? 'rent-conditions' :
     window.location.hash.replace('#', '') || 'catalog';
   document.querySelectorAll('.nav-link').forEach(link => {

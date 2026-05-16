@@ -1,4 +1,4 @@
-import { initHomePage, renderCarDetails, renderHome, renderRentConditions } from './catalog.js';
+import { initHomePage, renderCarDetails, renderFleetPage, renderHome, renderRentConditions } from './catalog.js';
 
 let afterRenderCallback = () => {};
 
@@ -48,6 +48,10 @@ function renderRoute({ isHistoryNavigation = false } = {}) {
       initHomePage();
       afterRenderCallback({ route: 'home' });
       scrollAfterRender(hash, isHistoryNavigation);
+    } else if (pathname === '/car' || pathname === '/car/') {
+      app.innerHTML = renderFleetPage();
+      afterRenderCallback({ route: 'fleet' });
+      if (!isHistoryNavigation) window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (carMatch) {
       app.innerHTML = renderCarDetails(decodeURIComponent(carMatch[1]));
       afterRenderCallback({ route: 'car', id: decodeURIComponent(carMatch[1]) });
