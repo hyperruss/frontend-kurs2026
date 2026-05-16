@@ -10,6 +10,12 @@ const categoryImages = {
   electric: new URL('../assets/cybertruck.png', import.meta.url).href
 };
 
+const assetImages = import.meta.glob('../assets/*', {
+  eager: true,
+  query: '?url',
+  import: 'default'
+});
+
 const personalOptions = [
   { title: 'Доставка авто', price: 'от 3 000 ₽', icon: 'route' },
   { title: 'Личный водитель', price: 'от 1 500 ₽/час', icon: 'driver' },
@@ -33,6 +39,10 @@ function formatRub(value) {
 }
 
 function getCarImage(car) {
+  if (Array.isArray(car.images) && car.images[0]) {
+    return resolveAssetImage(car.images[0]);
+  }
+
   const id = car.id.toLowerCase();
   const className = car.className.toLowerCase();
 
@@ -42,6 +52,22 @@ function getCarImage(car) {
   if (id.includes('bmw')) return categoryImages.business;
   if (id.includes('911') || id.includes('ferrari') || id.includes('lamborghini') || id.includes('aston')) return categoryImages.sport;
   return categoryImages.premium;
+}
+
+function resolveAssetImage(filename) {
+  return assetImages[`../assets/${filename}`] || `/assets/${filename}`;
+}
+
+function getCarImages(car) {
+  if (Array.isArray(car.images) && car.images.length) {
+    return car.images.map(resolveAssetImage);
+  }
+
+  return [getCarImage(car)];
+}
+
+function hasUploadedCarImages(car) {
+  return Array.isArray(car.images) && car.images.length > 0;
 }
 
 function iconSvg(name) {
@@ -56,30 +82,27 @@ function iconSvg(name) {
   return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name] || icons.shield}</svg>`;
 }
 
-function renderDetailSlide(car, label = '', index = 0) {
+function renderDetailSlide(car, imageSrc, label = '', index = 0) {
   return `
     <div class="detail-photo detail-photo-${index + 1}" data-detail-slide${index === 0 ? '' : ' hidden'}>
-      <img src="${getCarImage(car)}" alt="${escapeHtml(`${car.name} — ${label}`)}" loading="${index === 0 ? 'eager' : 'lazy'}">
+      <img src="${imageSrc}" alt="${escapeHtml(`${car.name} — ${label}`)}" loading="${index === 0 ? 'eager' : 'lazy'}">
     </div>
   `;
 }
 
-function renderDetailPhoto() {
-  return '';
-}
-
 function renderDetailGallery(car) {
+  const images = getCarImages(car);
   const labels = ['главное фото', 'экстерьер', 'салон', 'детали'];
   return `
     <div class="detail-gallery fade-in" data-detail-gallery>
       <div class="detail-main-photo">
-        ${labels.map((label, index) => renderDetailSlide(car, label, index)).join('')}
-        <button class="detail-gallery-btn detail-gallery-btn-prev" type="button" data-detail-gallery-prev aria-label="Предыдущее фото">
+        ${images.map((imageSrc, index) => renderDetailSlide(car, imageSrc, labels[index] || labels[0], index)).join('')}
+        ${images.length > 1 ? `<button class="detail-gallery-btn detail-gallery-btn-prev" type="button" data-detail-gallery-prev aria-label="Предыдущее фото">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <button class="detail-gallery-btn detail-gallery-btn-next" type="button" data-detail-gallery-next aria-label="Следующее фото">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
+        </button>` : ''}
       </div>
     </div>
   `;
@@ -195,10 +218,17 @@ function renderCategories() {
 
 
 function renderCarCard(car, { className = '' } = {}) {
+  const cardImage = hasUploadedCarImages(car) ? getCarImage(car) : '';
   return `
     <a class="showcase-card ${className} fade-in" href="/car/${escapeHtml(car.id)}" role="listitem" aria-label="${escapeHtml(car.name)}" data-status="${car.status}" data-collection="${car.collection}" data-price="${car.price}" data-brand="${escapeHtml(car.name.split(' ')[0])}" data-class="${escapeHtml(car.className)}">
-      <div class="showcase-card-media" data-initial="${escapeHtml(car.initial)}">
+      <div class="showcase-card-media ${cardImage ? 'showcase-card-media--photo' : ''}" data-initial="${escapeHtml(car.initial)}">
+      ${cardImage
+        ? `<img class="showcase-card-img" src="${cardImage}" alt="${escapeHtml(car.name)}" loading="lazy">`
+    : `<span class="showcase-photo-label">Фото автомобиля</span>`
+      }
+      <!--
         <span class="showcase-photo-label">Фото автомобиля</span>
+      -->
       </div>
       <div class="showcase-card-body">
         <h3 class="car-name">${escapeHtml(car.name)}</h3>
@@ -505,12 +535,6 @@ export function renderCarDetails(id) {
 
         <div class="detail-hero-layout">
           ${renderDetailGallery(car)}
-          <!--
-              ${renderDetailPhoto(car, 'главное фото')}
-            <div class="detail-thumbs" aria-label="Фотографии автомобиля">
-              ${['экстерьер', 'салон', 'детали'].map((label, index) => renderDetailPhoto(car, label, index + 1)).join('')}
-
-          -->
           <aside class="detail-booking-panel fade-in">
             <p class="stub-label">${escapeHtml(car.className)}</p>
             <h1>${escapeHtml(car.name)}</h1>

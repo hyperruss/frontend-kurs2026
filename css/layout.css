@@ -392,7 +392,7 @@
     radial-gradient(circle at 52% 18%, rgba(232,49,79,0.2), transparent 32%),
     linear-gradient(135deg, #211f1d, #0e0d0c 72%);
 }
-.showcase-card-media::before {
+/* .showcase-card-media::before {
   content: attr(data-initial);
   position: absolute;
   top: 50%;
@@ -403,9 +403,9 @@
   font-size: clamp(7rem, 11vw, 12rem);
   font-weight: 700;
   line-height: 1;
-}
-.showcase-card-media::after {
-  content: "";
+} */
+/* .showcase-card-media::after {
+  /* content: "";
   position: absolute;
   left: 9%;
   right: 9%;
@@ -417,6 +417,20 @@
     linear-gradient(90deg, transparent 9%, rgba(255,255,255,0.16) 9% 12%, transparent 12% 78%, rgba(255,255,255,0.16) 78% 81%, transparent 81%),
     linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
   box-shadow: 0 24px 38px rgba(0,0,0,0.44);
+ } */
+ 
+.showcase-card-media--photo {
+  background: #0b0b0b;
+}
+.showcase-card-media--photo::before,
+.showcase-card-media--photo::after {
+  display: none;
+}
+.showcase-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 .showcase-photo-label {
   position: relative;
@@ -1343,7 +1357,6 @@
   }
   .detail-gallery,
   .detail-main-photo,
-  .detail-thumbs,
   .detail-booking-panel {
     max-width: 100%;
     min-width: 0;
@@ -1355,23 +1368,6 @@
   .options-grid,
   .similar-grid {
     grid-template-columns: 1fr;
-  }
-  .detail-thumbs {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-2);
-  }
-  .detail-thumbs .detail-photo {
-    min-height: 110px;
-  }
-  .detail-thumbs .detail-photo img {
-    width: 120%;
-    max-height: 74%;
-  }
-  .detail-thumbs .detail-photo span {
-    left: var(--space-2);
-    bottom: var(--space-2);
-    font-size: 0.58rem;
-    letter-spacing: 0.08em;
   }
   .detail-booking-panel {
     padding: var(--space-5);
