@@ -10,6 +10,15 @@ const categoryImages = {
   electric: new URL('../assets/cybertruck.png', import.meta.url).href
 };
 
+const personalOptions = [
+  { title: 'Доставка авто', price: 'от 3 000 ₽', icon: 'route' },
+  { title: 'Личный водитель', price: 'от 1 500 ₽/час', icon: 'driver' },
+  { title: '100% защита', price: 'ответственность 0 ₽', icon: 'shield' },
+  { title: 'Детское кресло', price: 'бесплатно', icon: 'seat' },
+  { title: 'Охрана', price: 'от 10 000 ₽/час', icon: 'guard' },
+  { title: 'Фотограф', price: 'от 10 000 ₽/час', icon: 'camera' }
+];
+
 function escapeHtml(value = '') {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -17,6 +26,123 @@ function escapeHtml(value = '') {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;');
+}
+
+function formatRub(value) {
+  return `${Math.round(value).toLocaleString('ru-RU')} ₽`;
+}
+
+function getCarImage(car) {
+  const id = car.id.toLowerCase();
+  const className = car.className.toLowerCase();
+
+  if (id.includes('v-class')) return categoryImages.minivan;
+  if (id.includes('cybertruck') || className.includes('электро')) return categoryImages.electric;
+  if (id.includes('g63') || id.includes('range') || id.includes('urus') || id.includes('cullinan') || id.includes('bentayga')) return categoryImages.suv;
+  if (id.includes('bmw')) return categoryImages.business;
+  if (id.includes('911') || id.includes('ferrari') || id.includes('lamborghini') || id.includes('aston')) return categoryImages.sport;
+  return categoryImages.premium;
+}
+
+function iconSvg(name) {
+  const icons = {
+    route: '<path d="M6 19c2.8 0 3.2-14 6-14s3.2 14 6 14"/><circle cx="6" cy="19" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="18" cy="19" r="2"/>',
+    driver: '<circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/><path d="M8 14l4 3 4-3"/>',
+    shield: '<path d="M12 3 5 6v5c0 4.5 2.8 8.5 7 10 4.2-1.5 7-5.5 7-10V6l-7-3Z"/><path d="m9.5 12 1.8 1.8 3.7-4"/>',
+    seat: '<path d="M8 4v8h8l2 8"/><path d="M6 20h12"/><path d="M8 12l-2 8"/>',
+    guard: '<path d="M12 3 5 6v5c0 4.5 2.8 8.5 7 10 4.2-1.5 7-5.5 7-10V6l-7-3Z"/><path d="M9 10h6"/><path d="M9 14h6"/>',
+    camera: '<path d="M4 8h4l2-3h4l2 3h4v11H4z"/><circle cx="12" cy="13.5" r="3.5"/>'
+  };
+  return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name] || icons.shield}</svg>`;
+}
+
+function renderDetailSlide(car, label = '', index = 0) {
+  return `
+    <div class="detail-photo detail-photo-${index + 1}" data-detail-slide${index === 0 ? '' : ' hidden'}>
+      <img src="${getCarImage(car)}" alt="${escapeHtml(`${car.name} — ${label}`)}" loading="${index === 0 ? 'eager' : 'lazy'}">
+    </div>
+  `;
+}
+
+function renderDetailPhoto() {
+  return '';
+}
+
+function renderDetailGallery(car) {
+  const labels = ['главное фото', 'экстерьер', 'салон', 'детали'];
+  return `
+    <div class="detail-gallery fade-in" data-detail-gallery>
+      <div class="detail-main-photo">
+        ${labels.map((label, index) => renderDetailSlide(car, label, index)).join('')}
+        <button class="detail-gallery-btn detail-gallery-btn-prev" type="button" data-detail-gallery-prev aria-label="Предыдущее фото">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="detail-gallery-btn detail-gallery-btn-next" type="button" data-detail-gallery-next aria-label="Следующее фото">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function getRelatedCars(car) {
+  const sameCollection = carsData.filter(item => item.id !== car.id && item.collection === car.collection);
+  const fallback = carsData.filter(item => item.id !== car.id && !sameCollection.includes(item));
+  return [...sameCollection, ...fallback].slice(0, 3);
+}
+
+function renderDailyPrices(car) {
+  const plans = [
+    ['1 сутки', car.price, ''],
+    ['2-3 суток', car.price * 0.92, '-8%'],
+    ['4-6 суток', car.price * 0.84, '-16%'],
+    ['7-14 суток', car.price * 0.76, '-24%'],
+    ['15-21 суток', car.price * 0.68, '-32%'],
+    ['Более', null, '']
+  ];
+
+  return plans.map(([period, price, discount]) => `
+    <div class="price-cell">
+      <span>${period}</span>
+      <strong>${price ? `${formatRub(price)}/сутки` : 'Договорная'}</strong>
+      ${discount ? `<em>${discount}</em>` : ''}
+    </div>
+  `).join('');
+}
+
+function renderMonthlyPrices(car) {
+  const monthlyBase = car.price * 17;
+  const plans = [
+    ['1 мес', monthlyBase, ''],
+    ['3 мес', monthlyBase * 0.96, '-4%'],
+    ['6 мес', monthlyBase * 0.92, '-8%'],
+    ['12 мес', null, ''],
+    ['24 мес', null, ''],
+    ['36 мес', null, '']
+  ];
+
+  return plans.map(([period, price, discount]) => `
+    <div class="price-cell">
+      <span>${period}</span>
+      <strong>${price ? `${formatRub(price)}/мес.` : 'Договорная'}</strong>
+      ${discount ? `<em>${discount}</em>` : ''}
+    </div>
+  `).join('');
+}
+
+function renderSimilarCars(car) {
+  const relatedCars = getRelatedCars(car);
+  return `
+    <section class="detail-section similar-section" aria-labelledby="similar-heading">
+      <div class="detail-section-head">
+        <p class="showcase-eyebrow">Похожие автомобили</p>
+        <h2 id="similar-heading">Можно посмотреть ещё</h2>
+      </div>
+      <div class="similar-grid" role="list">
+        ${relatedCars.map(item => renderCarCard(item, { className: 'showcase-card--compact fleet-card' })).join('')}
+      </div>
+    </section>
+  `;
 }
 
 function renderHero() {
@@ -367,31 +493,116 @@ export function renderCarDetails(id) {
 
   document.title = `${car.name} — Monolith Drive`;
   return `
-    <section class="car-detail-page">
+    <section class="car-detail-page car-detail-page--rich">
       <div class="container">
-        <a class="car-back-link" href="/car">← Вернуться к автопарку</a>
-        <div class="car-detail-grid">
-          <div class="car-detail-media" data-initial="${escapeHtml(car.initial)}">
-            <span>Фото автомобиля</span>
-          </div>
-          <article class="car-detail-panel">
+        <nav class="detail-breadcrumbs" aria-label="Хлебные крошки">
+          <a href="/">Главная</a>
+          <span aria-hidden="true">—</span>
+          <a href="/car">Автопарк</a>
+          <span aria-hidden="true">—</span>
+          <span>${escapeHtml(car.name)}</span>
+        </nav>
+
+        <div class="detail-hero-layout">
+          ${renderDetailGallery(car)}
+          <!--
+              ${renderDetailPhoto(car, 'главное фото')}
+            <div class="detail-thumbs" aria-label="Фотографии автомобиля">
+              ${['экстерьер', 'салон', 'детали'].map((label, index) => renderDetailPhoto(car, label, index + 1)).join('')}
+
+          -->
+          <aside class="detail-booking-panel fade-in">
             <p class="stub-label">${escapeHtml(car.className)}</p>
-            <h1 class="stub-title">${escapeHtml(car.name)}</h1>
-            <p class="stub-text">Детальная страница автомобиля рендерится внутри SPA и берет данные напрямую из общего модуля данных.</p>
-            <div class="car-detail-specs">
-              <div><span>Объем</span><strong>${escapeHtml(car.engine)}</strong></div>
+            <h1>${escapeHtml(car.name)}</h1>
+            <div class="detail-price-main">
+              <span>${formatRub(car.price)}</span>
+              <small>/сутки</small>
+            </div>
+            <div class="detail-quick-specs" aria-label="Краткие характеристики">
+              <div><span>Двигатель</span><strong>${escapeHtml(car.engine)}</strong></div>
               <div><span>Мощность</span><strong>${escapeHtml(car.power)}</strong></div>
               <div><span>Привод</span><strong>${escapeHtml(car.drive)}</strong></div>
             </div>
-            <div class="car-detail-price">
-              <span>${escapeHtml(car.priceLabel)}</span><small>/сут</small>
-            </div>
-            <div class="stub-actions">
+            <div class="detail-booking-actions">
               <a class="btn btn-primary btn-hero" href="tel:+74951234567">Забронировать</a>
-              <a class="btn btn-outline btn-hero" href="/car">Назад</a>
+              <a class="btn btn-outline btn-hero" href="/car">В автопарк</a>
             </div>
-          </article>
+            <p class="detail-booking-note">Менеджер уточнит даты, адрес подачи и дополнительные опции. Работаем 24/7.</p>
+          </aside>
         </div>
+
+        <section class="detail-section detail-spec-section fade-in" aria-labelledby="spec-heading">
+          <div class="detail-section-head">
+            <p class="showcase-eyebrow">Характеристики</p>
+            <h2 id="spec-heading">Коротко об автомобиле</h2>
+          </div>
+          <div class="detail-spec-grid">
+            <div><span>Класс</span><strong>${escapeHtml(car.className)}</strong></div>
+            <div><span>Двигатель</span><strong>${escapeHtml(car.engine)}</strong></div>
+            <div><span>Мощность</span><strong>${escapeHtml(car.power)}</strong></div>
+            <div><span>Привод</span><strong>${escapeHtml(car.drive)}</strong></div>
+            <div><span>Статус</span><strong>${car.status === 'new' ? 'Новинка' : 'Доступен'}</strong></div>
+            <div><span>Город</span><strong>Москва</strong></div>
+          </div>
+        </section>
+
+        <section class="detail-section detail-prices-section fade-in" aria-labelledby="prices-heading">
+          <div class="detail-section-head">
+            <p class="showcase-eyebrow">Тарифы</p>
+            <h2 id="prices-heading">Стоимость аренды</h2>
+          </div>
+          <div class="detail-price-columns">
+            <article class="detail-price-card">
+              <div class="detail-price-card-head">
+                <h3>Посуточно</h3>
+                <span>без водителя</span>
+              </div>
+              <div class="price-grid">
+                ${renderDailyPrices(car)}
+              </div>
+            </article>
+            <article class="detail-price-card">
+              <div class="detail-price-card-head">
+                <h3>Помесячно</h3>
+                <span>долгий срок</span>
+              </div>
+              <div class="price-grid">
+                ${renderMonthlyPrices(car)}
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="detail-section detail-options-section fade-in" aria-labelledby="options-heading">
+          <div class="detail-section-head">
+            <p class="showcase-eyebrow">Дополнительные опции</p>
+            <h2 id="options-heading">Персонализируйте поездку</h2>
+          </div>
+          <div class="options-grid">
+            ${personalOptions.map(option => `
+              <article class="option-card">
+                <div class="option-icon">${iconSvg(option.icon)}</div>
+                <div>
+                  <h3>${escapeHtml(option.title)}</h3>
+                  <p>${escapeHtml(option.price)}</p>
+                </div>
+              </article>
+            `).join('')}
+          </div>
+        </section>
+
+        <section class="detail-section detail-service-section fade-in" aria-labelledby="service-heading">
+          <div class="detail-service-panel">
+            <div>
+              <p class="showcase-eyebrow">Monolith Drive</p>
+              <h2 id="service-heading">Автомобиль подадим чистым и готовым к поездке</h2>
+              <p>В стоимость входит подготовка автомобиля, консультация менеджера и сопровождение на весь период аренды. При необходимости добавим водителя, доставку к адресу, охрану или условия для съемки.</p>
+            </div>
+            <a class="btn btn-primary btn-hero" href="tel:+74951234567">Позвонить менеджеру</a>
+          </div>
+        </section>
+
+        ${renderSimilarCars(car)}
       </div>
     </section>
   `;

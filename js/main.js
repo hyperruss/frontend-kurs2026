@@ -23,7 +23,30 @@ function initHeaderState() {
 function initPageEffects() {
   updateHeaderState();
   initFadeInAnimations();
+  initDetailGalleries();
   updateActiveNavLink();
+}
+
+function initDetailGalleries() {
+  document.querySelectorAll('[data-detail-gallery]').forEach(gallery => {
+    const slides = Array.from(gallery.querySelectorAll('[data-detail-slide]'));
+    const prev = gallery.querySelector('[data-detail-gallery-prev]');
+    const next = gallery.querySelector('[data-detail-gallery-next]');
+    if (slides.length < 2 || !prev || !next) return;
+
+    let activeIndex = slides.findIndex(slide => !slide.hidden);
+    if (activeIndex < 0) activeIndex = 0;
+
+    const showSlide = index => {
+      activeIndex = (index + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => {
+        slide.hidden = slideIndex !== activeIndex;
+      });
+    };
+
+    prev.addEventListener('click', () => showSlide(activeIndex - 1));
+    next.addEventListener('click', () => showSlide(activeIndex + 1));
+  });
 }
 
 function updateHeaderState() {

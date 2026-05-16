@@ -159,11 +159,7 @@
     display: none;
   }
   .header-actions .btn {
-    max-width: 9rem;
-    overflow: hidden;
-    padding: 0.72rem 1rem;
-    font-size: 0.9rem;
-    text-overflow: ellipsis;
+    display: none;
   }
   .logo-top {
     font-size: 1.05rem;
@@ -372,7 +368,7 @@
   flex-direction: column;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px;
+  border-radius: 2px;
   background: #141312;
   box-shadow: 0 24px 70px rgba(0,0,0,0.24);
   color: var(--color-text);
@@ -981,6 +977,422 @@
 .car-detail-price small {
   color: rgba(255,255,255,0.42);
   font-size: var(--text-base);
+}
+
+.car-detail-page--rich {
+  padding-top: clamp(6rem, 10vw, 8.5rem);
+}
+.car-detail-page--rich .container {
+  max-width: 1540px;
+}
+.detail-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-7, 1.75rem);
+  color: rgba(255,255,255,0.46);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+}
+.detail-breadcrumbs a:hover {
+  color: #fff;
+}
+.detail-hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(360px, 0.55fr);
+  gap: clamp(var(--space-5), 3vw, var(--space-8));
+  align-items: start;
+}
+.detail-gallery {
+  min-width: 0;
+}
+.detail-main-photo {
+  position: relative;
+}
+.detail-photo {
+  position: relative;
+  display: grid;
+  min-height: 180px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(232,49,79,0.24), transparent 36%),
+    linear-gradient(145deg, #272522, #0d0c0b 78%);
+  box-shadow: 0 26px 80px rgba(0,0,0,0.28);
+}
+.detail-main-photo .detail-photo {
+  min-height: clamp(420px, 46vw, 680px);
+}
+.detail-photo[hidden] {
+  display: none;
+}
+.detail-photo::after {
+  content: "";
+  position: absolute;
+  inset: auto 12% 15% 12%;
+  height: 13%;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.34);
+  filter: blur(20px);
+}
+.detail-photo img {
+  position: relative;
+  z-index: 1;
+  width: min(88%, 880px);
+  max-height: 78%;
+  object-fit: contain;
+  filter: drop-shadow(0 32px 34px rgba(0,0,0,0.48));
+}
+.detail-photo span {
+  display: none;
+}
+.detail-gallery-btn {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: inline-flex;
+  width: 54px;
+  height: 54px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--radius-full);
+  background: rgba(8,8,8,0.56);
+  color: rgba(255,255,255,0.82);
+  transform: translateY(-50%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.34);
+}
+.detail-gallery-btn:hover {
+  border-color: rgba(255,255,255,0.42);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+.detail-gallery-btn-prev {
+  left: var(--space-5);
+}
+.detail-gallery-btn-next {
+  right: var(--space-5);
+}
+.detail-photo-2 {
+  background:
+    radial-gradient(circle at 70% 20%, rgba(255,255,255,0.12), transparent 34%),
+    linear-gradient(145deg, #25211f, #0e0d0c 78%);
+}
+.detail-photo-3 {
+  background:
+    radial-gradient(circle at 35% 25%, rgba(232,49,79,0.2), transparent 36%),
+    linear-gradient(145deg, #211f23, #0b0b0c 78%);
+}
+.detail-photo-4 {
+  background:
+    radial-gradient(circle at 52% 18%, rgba(255,255,255,0.13), transparent 34%),
+    linear-gradient(145deg, #202223, #0c0c0b 78%);
+}
+.detail-booking-panel {
+  position: sticky;
+  top: 96px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  background: linear-gradient(180deg, #1b1a18, #11100f);
+  padding: clamp(var(--space-6), 3vw, var(--space-9, 2.25rem));
+  box-shadow: 0 28px 80px rgba(0,0,0,0.36);
+}
+.detail-booking-panel h1 {
+  margin-bottom: var(--space-5);
+  color: #fff;
+  font-size: clamp(2.4rem, 4vw, 4.8rem);
+  font-weight: 500;
+}
+.detail-price-main {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  color: #fff;
+  font-family: var(--font-display);
+}
+.detail-price-main span {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  line-height: 1;
+}
+.detail-price-main small {
+  color: rgba(255,255,255,0.48);
+  font-size: 1rem;
+}
+.detail-quick-specs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin-bottom: var(--space-7, 1.75rem);
+}
+.detail-quick-specs div,
+.detail-spec-grid div {
+  border-top: 1px solid rgba(255,255,255,0.11);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding-block: var(--space-4);
+}
+.detail-quick-specs span,
+.detail-spec-grid span {
+  display: block;
+  color: rgba(255,255,255,0.42);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.detail-quick-specs strong,
+.detail-spec-grid strong {
+  display: block;
+  margin-top: var(--space-2);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+.detail-booking-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+.detail-booking-actions .btn {
+  justify-content: center;
+  width: 100%;
+}
+.detail-booking-note {
+  color: rgba(255,255,255,0.52);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+.detail-section {
+  margin-top: clamp(var(--space-12), 6vw, var(--space-20));
+}
+.detail-section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+.detail-section-head h2,
+.detail-service-panel h2 {
+  color: #fff;
+  font-size: clamp(2.2rem, 4vw, 4.8rem);
+  font-weight: 500;
+}
+.detail-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--space-4);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  background: #151412;
+  padding: var(--space-5);
+}
+.detail-price-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+.detail-price-card {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  background: #151412;
+  overflow: hidden;
+}
+.detail-price-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.detail-price-card-head h3 {
+  color: #fff;
+  font-size: clamp(1.6rem, 2vw, 2.3rem);
+  font-weight: 500;
+}
+.detail-price-card-head span {
+  color: rgba(255,255,255,0.45);
+  font-size: 0.9rem;
+}
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.price-cell {
+  position: relative;
+  min-height: 118px;
+  padding: var(--space-5);
+  border-right: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.price-cell:nth-child(3n) {
+  border-right: 0;
+}
+.price-cell span {
+  display: block;
+  margin-bottom: var(--space-3);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.88rem;
+}
+.price-cell strong {
+  display: block;
+  color: #fff;
+  font-size: clamp(1rem, 1.4vw, 1.26rem);
+  font-weight: 500;
+  line-height: 1.25;
+}
+.price-cell em {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  color: var(--color-primary);
+  font-style: normal;
+  font-size: 0.8rem;
+}
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+.option-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 104px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  background: #151412;
+  padding: var(--space-5);
+}
+.option-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 4px;
+  color: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.03);
+}
+.option-card h3 {
+  margin-bottom: var(--space-1);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+.option-card p {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.95rem;
+}
+.detail-service-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-8);
+  align-items: center;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  background:
+    linear-gradient(135deg, rgba(232,49,79,0.13), transparent 42%),
+    #151412;
+  padding: clamp(var(--space-6), 4vw, var(--space-10));
+}
+.detail-service-panel p:not(.showcase-eyebrow) {
+  max-width: 72ch;
+  margin-top: var(--space-4);
+  color: rgba(255,255,255,0.58);
+  line-height: 1.85;
+}
+.similar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+@media (max-width: 1180px) {
+  .detail-hero-layout,
+  .detail-price-columns {
+    grid-template-columns: 1fr;
+  }
+  .detail-booking-panel {
+    position: static;
+  }
+  .detail-spec-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .similar-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  .detail-breadcrumbs {
+    gap: var(--space-2);
+    font-size: 0.85rem;
+  }
+  .detail-gallery,
+  .detail-main-photo,
+  .detail-thumbs,
+  .detail-booking-panel {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .detail-main-photo .detail-photo {
+    min-height: 330px;
+  }
+  .detail-spec-grid,
+  .options-grid,
+  .similar-grid {
+    grid-template-columns: 1fr;
+  }
+  .detail-thumbs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+  .detail-thumbs .detail-photo {
+    min-height: 110px;
+  }
+  .detail-thumbs .detail-photo img {
+    width: 120%;
+    max-height: 74%;
+  }
+  .detail-thumbs .detail-photo span {
+    left: var(--space-2);
+    bottom: var(--space-2);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+  }
+  .detail-booking-panel {
+    padding: var(--space-5);
+  }
+  .detail-booking-panel h1 {
+    font-size: clamp(2.05rem, 10vw, 3rem);
+    overflow-wrap: anywhere;
+  }
+  .detail-quick-specs,
+  .price-grid {
+    grid-template-columns: 1fr;
+  }
+  .detail-section-head,
+  .detail-service-panel {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+  .price-cell,
+  .price-cell:nth-child(3n) {
+    border-right: 0;
+  }
 }
 
 /* Rent conditions route */
