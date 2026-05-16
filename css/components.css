@@ -37,7 +37,7 @@
 .car-spec { display: flex; align-items: center; gap: var(--space-1); font-size: var(--text-xs); color: var(--color-text-muted); }
 .car-spec svg { color: var(--color-text-faint); flex-shrink: 0; }
 .car-card-footer { display: flex; align-items: center; justify-content: space-between; }
-.car-price { font-size: var(--text-xl); font-weight: 800; color: var(--color-text); }
+.car-price { font-size: var(--text-xl); font-weight: 300; color: var(--color-text); }
 .car-price-period { font-size: var(--text-xs); color: var(--color-text-muted); }
 .btn-book { padding: var(--space-2) var(--space-5); background: var(--color-primary); color: #fff; border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 600; }
 .btn-book:hover { background: var(--color-primary-hover); }
