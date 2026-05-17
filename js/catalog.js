@@ -472,7 +472,6 @@ function renderInfoSections() {
     <section class="reviews-section" id="reviews" aria-labelledby="reviews-heading">
       <div class="container">
         <div class="section-center">
-          <p class="why-label">Отзывы</p>
           <h2 class="why-title" id="reviews-heading">Что говорят клиенты</h2>
         </div>
         <div class="reviews-grid">
