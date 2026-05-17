@@ -5,7 +5,7 @@ export const collections = [
 ];
 
 export const carsData = [
-  { id: 'mercedes-maybach-s580', collection: 'season-hits', name: 'Mercedes-Maybach S 580', price: 45000, priceLabel: 'от 45 000 ₽', engine: '4.0 л', power: '503 л.с.', drive: '4Matic', initial: 'S', className: 'Премиум седан', status: 'available' },
+  { id: 'mercedes-maybach-s680', category:'premium',images:['maybach-1.jpg','maybach-2.jpg','maybach-3.jpg','maybach-4.jpg'],collection: 'season-hits', name: 'Mercedes-Maybach S 680', price: 45000, priceLabel: 'от 45 000 ₽', engine: '4.0 л', power: '503 л.с.', drive: '4Matic', initial: 'S', className: 'Премиум седан', status: 'available' },
   { id: 'rolls-royce-ghost', images: ['rolls-royce-ghost-1.jpg', 'rolls-royce-ghost-2.jpg','rolls-royce-ghost-3.jpg','rolls-royce-ghost-4.jpg'],collection: 'season-hits', name: 'Rolls-Royce Ghost', price: 78000, priceLabel: 'от 78 000 ₽', engine: '6.7 л', power: '571 л.с.', drive: 'AWD', initial: 'G', className: 'Представительский', status: 'available' },
   { id: 'lamborghini-urus',images:['lamborghini-urus-1.jpg','lamborghini-urus-2.jpg','lamborghini-urus-3.jpg','lamborghini-urus-4.jpg'], collection: 'season-hits', name: 'Lamborghini Urus', price: 62000, priceLabel: 'от 62 000 ₽', engine: '4.0 л', power: '650 л.с.', drive: 'AWD', initial: 'U', className: 'Super SUV', status: 'available' },
   { id: 'mercedes-amg-g63', images: ['mercedes-amg-g63-1.jpg', 'mercedes-amg-g63-2.jpg','mercedes-benz-g63-3.jpg','mercedes-benz-g63-4.jpg','mercedes-benz-g63-5.jpg'], collection: 'season-hits', name: 'Mercedes-AMG G 63', price: 55000, priceLabel: 'от 55 000 ₽', engine: '4.0 л', power: '585 л.с.', drive: '4Matic', initial: 'G', className: 'Внедорожник', status: 'available' },

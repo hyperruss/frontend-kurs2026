@@ -10,6 +10,15 @@ const categoryImages = {
   electric: new URL('../assets/cybertruck.png', import.meta.url).href
 };
 
+const carCategoryOptions = [
+  { id: 'premium', label: 'Премиум' },
+  { id: 'suv', label: 'Внедорожники' },
+  { id: 'business', label: 'Бизнес' },
+  { id: 'sport', label: 'Спорткары' },
+  { id: 'minivan', label: 'Минивэны' },
+  { id: 'electric', label: 'Электромобили' }
+];
+
 const assetImages = import.meta.glob('../assets/*', {
   eager: true,
   query: '?url',
@@ -68,6 +77,25 @@ function getCarImages(car) {
 
 function hasUploadedCarImages(car) {
   return Array.isArray(car.images) && car.images.length > 0;
+}
+
+function getCarCategory(car) {
+  if (car.category) return car.category;
+
+  const id = car.id.toLowerCase();
+  const className = car.className.toLowerCase();
+
+  if (id.includes('v-class')) return 'minivan';
+  if (id.includes('cybertruck') || className.includes('электро')) return 'electric';
+  if (id.includes('g63') || id.includes('range') || id.includes('urus') || id.includes('cullinan') || id.includes('bentayga') || className.includes('suv') || className.includes('внедорож')) return 'suv';
+  if (id.includes('911') || id.includes('ferrari') || id.includes('lamborghini') || id.includes('aston') || className.includes('спорт') || className.includes('roadster')) return 'sport';
+  if (id.includes('bmw') || className.includes('бизнес')) return 'business';
+  return 'premium';
+}
+
+function getCarBrand(car) {
+  const match = car.name.match(/^(Mercedes-Benz|Mercedes-AMG|Mercedes-Maybach|Rolls-Royce|Aston Martin|Range Rover|Tesla|BMW|Bentley|Ferrari|Lamborghini|Porsche)/i);
+  return match ? match[0] : car.name.split(' ')[0];
 }
 
 function iconSvg(name) {
@@ -189,7 +217,9 @@ function renderHero() {
 }
 
 function renderCategories() {
-  const items = [
+  const items = carCategoryOptions.map(({ id, label }) => [id, label]);
+  /*
+  const legacyItems = [
     ['premium', 'Премиум'],
     ['suv', 'Внедорожники'],
     ['business', 'Бизнес'],
@@ -197,6 +227,7 @@ function renderCategories() {
     ['minivan', 'Минивэны'],
     ['electric', 'Электромобили']
   ];
+  */
 
   return `
     <section id="categories" class="categories-section" aria-labelledby="categories-heading">
@@ -204,7 +235,7 @@ function renderCategories() {
         <h2 class="categories-title" id="categories-heading">Категории автомобилей</h2>
         <div class="categories-grid" role="list">
           ${items.map(([id, label]) => `
-            <a href="/car" class="category-card" role="listitem" aria-label="${label}">
+            <a href="/car?category=${encodeURIComponent(id)}" class="category-card" role="listitem" aria-label="${label}">
               <img src="${categoryImages[id]}" alt="${label}" loading="lazy" width="220" height="100">
               <div class="category-label">${label}</div>
             </a>
@@ -219,8 +250,10 @@ function renderCategories() {
 
 function renderCarCard(car, { className = '' } = {}) {
   const cardImage = hasUploadedCarImages(car) ? getCarImage(car) : '';
+  const category = getCarCategory(car);
+  const brand = getCarBrand(car);
   return `
-    <a class="showcase-card ${className} fade-in" href="/car/${escapeHtml(car.id)}" role="listitem" aria-label="${escapeHtml(car.name)}" data-status="${car.status}" data-collection="${car.collection}" data-price="${car.price}" data-brand="${escapeHtml(car.name.split(' ')[0])}" data-class="${escapeHtml(car.className)}">
+    <a class="showcase-card ${className} fade-in" href="/car/${escapeHtml(car.id)}" role="listitem" aria-label="${escapeHtml(car.name)}" data-status="${car.status}" data-collection="${car.collection}" data-price="${car.price}" data-brand="${escapeHtml(brand)}" data-category="${escapeHtml(category)}" data-class="${escapeHtml(car.className)}">
       <div class="showcase-card-media ${cardImage ? 'showcase-card-media--photo' : ''}" data-initial="${escapeHtml(car.initial)}">
       ${cardImage
         ? `<img class="showcase-card-img" src="${cardImage}" alt="${escapeHtml(car.name)}" loading="lazy">`
@@ -298,16 +331,64 @@ function renderFleetFilters() {
   `;
 }
 
+function renderFleetFilterControls() {
+  const brands = [...new Set(carsData.map(getCarBrand))].sort((a, b) => a.localeCompare(b, 'ru'));
+
+  return `
+    <div class="fleet-toolbar" aria-label="Фильтры автопарка">
+      <div class="fleet-filter-group" data-fleet-filters>
+        <label class="fleet-select-field">
+          <span>Категория</span>
+          <select class="fleet-select" data-fleet-category>
+            <option value="">Все категории</option>
+            ${carCategoryOptions.map(({ id, label }) => `<option value="${id}">${label}</option>`).join('')}
+          </select>
+        </label>
+        <label class="fleet-select-field">
+          <span>Марка</span>
+          <select class="fleet-select" data-fleet-brand>
+            <option value="">Все марки</option>
+            ${brands.map(brand => `<option value="${escapeHtml(brand)}">${escapeHtml(brand)}</option>`).join('')}
+          </select>
+        </label>
+        <label class="fleet-select-field">
+          <span>Цена</span>
+          <select class="fleet-select" data-fleet-price>
+            <option value="">Любая цена</option>
+            <option value="under-50000">До 50 000 ₽</option>
+            <option value="50000-70000">50 000-70 000 ₽</option>
+            <option value="over-70000">От 70 000 ₽</option>
+          </select>
+        </label>
+        <button class="fleet-filter fleet-filter-reset" type="button" data-fleet-reset>Сбросить</button>
+      </div>
+      <label class="fleet-sort-field">
+        <span>Сортировка</span>
+        <select class="fleet-sort-select" data-fleet-sort>
+          <option value="default">По умолчанию</option>
+          <option value="price-asc">Сначала дешевле</option>
+          <option value="price-desc">Сначала дороже</option>
+          <option value="name-asc">По названию</option>
+        </select>
+      </label>
+    </div>
+    <div class="fleet-results-line">
+      <span id="fleetResultsCount"></span>
+    </div>
+  `;
+}
+
 export function renderFleetPage() {
   document.title = 'Автопарк — Monolith Drive';
   return `
     ${renderFleetHero()}
     <section class="fleet-page" aria-label="Список автомобилей">
       <div class="container">
-        ${renderFleetFilters()}
+        ${renderFleetFilterControls()}
         <div class="fleet-grid" role="list">
           ${carsData.map(car => renderCarCard(car, { className: 'showcase-card--compact fleet-card' })).join('')}
         </div>
+        <p class="fleet-empty" data-fleet-empty hidden>Автомобили с такими параметрами не найдены.</p>
       </div>
     </section>
   `;
