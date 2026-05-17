@@ -1,4 +1,4 @@
-import { initHomePage, renderCarDetails, renderFleetPage, renderHome, renderRentConditions } from './catalog.js';
+import { initHomePage, renderCarDetails, renderContacts, renderFleetPage, renderHome, renderRentConditions } from './catalog.js';
 
 let afterRenderCallback = () => {};
 
@@ -59,6 +59,10 @@ function renderRoute({ isHistoryNavigation = false } = {}) {
     } else if (pathname === '/rent-conditions' || pathname === '/rent-conditions/') {
       app.innerHTML = renderRentConditions();
       afterRenderCallback({ route: 'rent-conditions' });
+      if (!isHistoryNavigation) window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (pathname === '/contacts' || pathname === '/contacts/') {
+      app.innerHTML = renderContacts();
+      afterRenderCallback({ route: 'contacts' });
       if (!isHistoryNavigation) window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       window.history.replaceState({}, '', '/');

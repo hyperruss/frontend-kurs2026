@@ -1,7 +1,7 @@
 export const collections = [
-  { id: 'season-hits', eyebrow: 'Monolith selection', title: 'Хиты сезона', link: 'Все автомобили' },
-  { id: 'new-arrivals', eyebrow: 'Fresh garage', title: 'Новые поступления', link: 'Смотреть новинки' },
-  { id: 'influencers', eyebrow: 'Content ready', title: 'Для инфлюенсеров', link: 'Для съемок' }
+  { id: 'season-hits', title: 'Хиты сезона', link: 'Все автомобили' },
+  { id: 'new-arrivals', title: 'Новые поступления', link: 'Смотреть новинки' },
+  { id: 'influencers', title: 'Для инфлюенсеров', link: 'Для съемок' }
 ];
 
 export const carsData = [

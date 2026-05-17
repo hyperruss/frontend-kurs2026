@@ -399,8 +399,7 @@ function renderCollection(collection) {
   return `
     <section class="car-showcase" aria-labelledby="${collection.id}-heading" data-collection-section="${collection.id}">
       <div class="section-header showcase-header">
-        <div>
-          <p class="showcase-eyebrow">${escapeHtml(collection.eyebrow)}</p>
+        <div class="showcase-heading">
           <h2 class="section-title" id="${collection.id}-heading">${escapeHtml(collection.title)}</h2>
         </div>
         <div class="showcase-actions">
@@ -470,21 +469,6 @@ function renderInfoSections() {
         </div>
     </section>
 
-    <section class="how-section" id="how" aria-labelledby="how-heading">
-      <div class="container">
-        <div class="section-center">
-          <p class="why-label">Процесс</p>
-          <h2 class="why-title" id="how-heading">Как взять авто в аренду</h2>
-        </div>
-        <div class="steps-grid">
-          <div class="step-card fade-in"><div class="step-num" aria-hidden="true">1</div><h3 class="step-title">Выберите авто</h3><p class="step-desc">Найдите подходящий автомобиль в подборке и откройте его страницу.</p></div>
-          <div class="step-card fade-in"><div class="step-num" aria-hidden="true">2</div><h3 class="step-title">Оставьте заявку</h3><p class="step-desc">Менеджер свяжется с вами и уточнит даты аренды.</p></div>
-          <div class="step-card fade-in"><div class="step-num" aria-hidden="true">3</div><h3 class="step-title">Подпишите договор</h3><p class="step-desc">Удаленно или лично в офисе Monolith Drive.</p></div>
-          <div class="step-card fade-in"><div class="step-num" aria-hidden="true">4</div><h3 class="step-title">Получите ключи</h3><p class="step-desc">Авто подадут в удобный район или к месту съемки.</p></div>
-        </div>
-      </div>
-    </section>
-
     <section class="reviews-section" id="reviews" aria-labelledby="reviews-heading">
       <div class="container">
         <div class="section-center">
@@ -492,9 +476,9 @@ function renderInfoSections() {
           <h2 class="why-title" id="reviews-heading">Что говорят клиенты</h2>
         </div>
         <div class="reviews-grid">
-          <article class="review-card fade-in"><div class="review-stars" aria-label="5 звезд">★★★★★</div><p class="review-text">«Брал BMW на неделю — машина чистая, менеджер все объяснил. Уже второй раз обращаюсь.»</p><div class="review-author"><div class="review-avatar"><img src="https://picsum.photos/seed/alex1/80/80" alt="Алексей М." loading="lazy" width="44" height="44"></div><div><div class="review-name">Алексей М.</div><div class="review-date">Март 2026</div></div></div></article>
-          <article class="review-card fade-in"><div class="review-stars" aria-label="5 звезд">★★★★★</div><p class="review-text">«Оформили за 10 минут, привезли прямо к офису. Цены честные, без скрытых платежей.»</p><div class="review-author"><div class="review-avatar"><img src="https://picsum.photos/seed/marina/80/80" alt="Марина К." loading="lazy" width="44" height="44"></div><div><div class="review-name">Марина К.</div><div class="review-date">Апрель 2026</div></div></div></article>
-          <article class="review-card fade-in"><div class="review-stars" aria-label="5 звезд">★★★★★</div><p class="review-text">«Брали Mercedes для съемки. Машина в отличном состоянии, поддержка была на связи весь день.»</p><div class="review-author"><div class="review-avatar"><img src="https://picsum.photos/seed/dmitry/80/80" alt="Дмитрий Р." loading="lazy" width="44" height="44"></div><div><div class="review-name">Дмитрий Р.</div><div class="review-date">Май 2026</div></div></div></article>
+          <article class="review-card fade-in"><div class="review-stars" aria-label="5 звезд">★★★★★</div><p class="review-text">«Для деловой недели выбрал BMW. Автомобиль подали без задержек, салон идеально подготовлен, все условия были понятны до подписания договора.»</p><div class="review-author"><div class="review-avatar" aria-hidden="true">АМ</div><div><div class="review-name">Алексей М.</div><div class="review-date">Москва · Март 2026</div></div></div></article>
+          <article class="review-card fade-in"><div class="review-stars" aria-label="5 звезд">★★★★★</div><p class="review-text">«Нужен был автомобиль к офису и обратный возврат в другом районе. Менеджер спокойно согласовал детали, без лишних звонков и скрытых платежей.»</p><div class="review-author"><div class="review-avatar" aria-hidden="true">МК</div><div><div class="review-name">Марина К.</div><div class="review-date">Сочи · Апрель 2026</div></div></div></article>
+          <article class="review-card fade-in"><div class="review-stars" aria-label="5 звезд">★★★★★</div><p class="review-text">«Брали Mercedes для съемочного дня. Машина выглядела строго как на фото, сопровождение было на связи до самого возврата.»</p><div class="review-author"><div class="review-avatar" aria-hidden="true">ДР</div><div><div class="review-name">Дмитрий Р.</div><div class="review-date">Москва · Май 2026</div></div></div></article>
         </div>
       </div>
     </section>
@@ -506,7 +490,7 @@ function renderInfoSections() {
           <p class="cta-desc">Выберите автомобиль и получите персональное предложение на аренду.</p>
           <div class="cta-btns">
             <a class="btn btn-primary btn-hero" href="/car">Выбрать авто</a>
-            <a href="tel:+74951234567" class="btn btn-outline btn-hero">Позвонить нам</a>
+            <a href="/contacts" class="btn btn-outline btn-hero">Контакты</a>
           </div>
         </div>
       </div>
@@ -572,6 +556,68 @@ export function renderRentConditions() {
               <a class="btn btn-outline btn-hero" href="tel:+74951234567">Позвонить менеджеру</a>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+export function renderContacts() {
+  document.title = 'Контакты — Monolith Drive';
+  return `
+    <section class="contacts-page">
+      <div class="container">
+        <div class="contacts-hero fade-in">
+          <p class="showcase-eyebrow">Contacts</p>
+          <h1>Контакты</h1>
+          <p>Свяжитесь с персональным менеджером, уточните доступность автомобиля или согласуйте подачу в удобную точку города.</p>
+        </div>
+
+        <div class="contacts-layout">
+          <aside class="contacts-panel fade-in">
+            <p class="contacts-panel-label">Единая линия</p>
+            <a class="contacts-main-phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
+            <span>Круглосуточно, без выходных</span>
+            <a class="btn btn-primary btn-hero" href="tel:+74951234567">Позвонить</a>
+          </aside>
+
+          <div class="contacts-grid">
+            <article class="contact-card fade-in">
+              <span>Телефоны</span>
+              <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+              <a href="tel:+78005550177">+7 (800) 555-01-77</a>
+              <p>Бронирование, подбор автомобиля и сопровождение аренды.</p>
+            </article>
+
+            <article class="contact-card fade-in">
+              <span>Почта</span>
+              <a href="mailto:info@monolithdrive.ru">info@monolithdrive.ru</a>
+              <a href="mailto:booking@monolithdrive.ru">booking@monolithdrive.ru</a>
+              <p>Коммерческие предложения, договоры и корпоративные заявки.</p>
+            </article>
+
+            <article class="contact-card contact-card-wide fade-in">
+              <span>Офисы</span>
+              <div class="office-list">
+                <p><strong>Москва</strong> Пресненская наб., 12, башня Федерация</p>
+                <p><strong>Санкт-Петербург</strong> Невский проспект, 55</p>
+                <p><strong>Сочи</strong> Морской переулок, 2</p>
+                <p><strong>Дубай</strong> Business Bay, Bay Square</p>
+              </div>
+            </article>
+
+            <article class="contact-card fade-in">
+              <span>График</span>
+              <strong>24/7</strong>
+              <p>Выдача и возврат автомобилей доступны по предварительному согласованию в любое время.</p>
+            </article>
+
+            <article class="contact-card fade-in">
+              <span>Подача</span>
+              <strong>Офис · отель · аэропорт</strong>
+              <p>Доставим автомобиль по адресу в городе или встретим у терминала.</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>

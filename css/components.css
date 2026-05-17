@@ -49,13 +49,55 @@
 .results-count { margin-left: auto; font-size: var(--text-sm); color: var(--color-text-muted); white-space: nowrap; }
 
 /* Отзывы */
-.review-card { background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: var(--radius-xl); padding: var(--space-8); box-shadow: var(--shadow-sm); }
-.review-stars { color: #f59e0b; font-size: var(--text-lg); margin-bottom: var(--space-4); letter-spacing: 2px; }
-.review-text { font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.7; margin-bottom: var(--space-6); font-style: italic; }
+.review-card {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  background: linear-gradient(180deg, #1b1a18, #11100f);
+  padding: var(--space-8);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+}
+.review-stars {
+  color: rgba(255,255,255,0.64);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-5);
+  letter-spacing: 0.28em;
+}
+.review-text {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 1.8vw, 2rem);
+  color: rgba(255,255,255,0.82);
+  line-height: 1.35;
+  margin-bottom: var(--space-8);
+}
 .review-author { display: flex; align-items: center; gap: var(--space-3); }
-.review-avatar img { width: 44px; height: 44px; border-radius: var(--radius-full); object-fit: cover; }
-.review-name { font-weight: 700; font-size: var(--text-sm); color: var(--color-text); }
-.review-date { font-size: var(--text-xs); color: var(--color-text-faint); }
+.review-avatar {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 4px;
+  color: rgba(255,255,255,0.86);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  background: rgba(255,255,255,0.04);
+}
+.review-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: #fff;
+}
+.review-date {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.42);
+}
 
 /* Шаги */
 .step-card { background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: var(--radius-xl); padding: var(--space-8); }

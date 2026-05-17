@@ -12,7 +12,7 @@ function initHeaderState() {
   if (!header) return;
 
   const onScroll = () => {
-    header.classList.toggle('header--scrolled', window.scrollY > 60 || window.location.pathname.startsWith('/car'));
+    header.classList.toggle('header--scrolled', window.scrollY > 60 || window.location.pathname.startsWith('/car') || window.location.pathname.startsWith('/contacts') || window.location.pathname.startsWith('/rent-conditions'));
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -136,7 +136,7 @@ function initDetailGalleries() {
 
 function updateHeaderState() {
   const header = document.getElementById('mainHeader');
-  header?.classList.toggle('header--scrolled', window.scrollY > 60 || window.location.pathname.startsWith('/car'));
+  header?.classList.toggle('header--scrolled', window.scrollY > 60 || window.location.pathname.startsWith('/car') || window.location.pathname.startsWith('/contacts') || window.location.pathname.startsWith('/rent-conditions'));
 }
 
 function initFadeInAnimations() {
