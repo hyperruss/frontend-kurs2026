@@ -1,4 +1,4 @@
-import { carsData, collections, getCarById, getCarsByCollection } from './data.js';
+import { collections, fetchCarsData, getCarById, getCarsByCollection } from './data.js';
 
 const heroVideo = new URL('../assets/Video Project 2 (1).mp4', import.meta.url).href;
 const categoryImages = {
@@ -136,7 +136,7 @@ function renderDetailGallery(car) {
   `;
 }
 
-function getRelatedCars(car) {
+function getRelatedCars(car, carsData) {
   const sameCollection = carsData.filter(item => item.id !== car.id && item.collection === car.collection);
   const fallback = carsData.filter(item => item.id !== car.id && !sameCollection.includes(item));
   return [...sameCollection, ...fallback].slice(0, 3);
@@ -181,8 +181,8 @@ function renderMonthlyPrices(car) {
   `).join('');
 }
 
-function renderSimilarCars(car) {
-  const relatedCars = getRelatedCars(car);
+function renderSimilarCars(car, carsData) {
+  const relatedCars = getRelatedCars(car, carsData);
   return `
     <section class="detail-section similar-section" aria-labelledby="similar-heading">
       <div class="detail-section-head">
@@ -331,7 +331,7 @@ function renderFleetFilters() {
   `;
 }
 
-function renderFleetFilterControls() {
+function renderFleetFilterControls(carsData) {
   const brands = [...new Set(carsData.map(getCarBrand))].sort((a, b) => a.localeCompare(b, 'ru'));
 
   return `
@@ -378,13 +378,14 @@ function renderFleetFilterControls() {
   `;
 }
 
-export function renderFleetPage() {
+export async function renderFleetPage() {
+  const carsData = await fetchCarsData();
   document.title = 'Автопарк — Monolith Drive';
   return `
     ${renderFleetHero()}
     <section class="fleet-page" aria-label="Список автомобилей">
       <div class="container">
-        ${renderFleetFilterControls()}
+        ${renderFleetFilterControls(carsData)}
         <div class="fleet-grid" role="list">
           ${carsData.map(car => renderCarCard(car, { className: 'showcase-card--compact fleet-card' })).join('')}
         </div>
@@ -394,8 +395,8 @@ export function renderFleetPage() {
   `;
 }
 
-function renderCollection(collection) {
-  const cars = getCarsByCollection(collection.id);
+async function renderCollection(collection) {
+  const cars = await getCarsByCollection(collection.id);
   return `
     <section class="car-showcase" aria-labelledby="${collection.id}-heading" data-collection-section="${collection.id}">
       <div class="section-header showcase-header">
@@ -417,11 +418,12 @@ function renderCollection(collection) {
   `;
 }
 
-function renderShowcase() {
+async function renderShowcase() {
+  const collectionSections = await Promise.all(collections.map(renderCollection));
   return `
     <main id="catalog" class="showcase-section">
       <div class="container">
-        ${collections.map(renderCollection).join('')}
+        ${collectionSections.join('')}
       </div>
     </main>
   `;
@@ -623,13 +625,14 @@ export function renderContacts() {
   `;
 }
 
-export function renderHome() {
+export async function renderHome() {
   document.title = 'Monolith Drive — аренда элитных автомобилей';
-  return `${renderHero()}${renderCategories()}${renderShowcase()}${renderInfoSections()}`;
+  return `${renderHero()}${renderCategories()}${await renderShowcase()}${renderInfoSections()}`;
 }
 
-export function renderCarDetails(id) {
-  const car = getCarById(id);
+export async function renderCarDetails(id) {
+  const carsData = await fetchCarsData();
+  const car = await getCarById(id);
 
   if (!car) {
     document.title = 'Автомобиль не найден — Monolith Drive';
@@ -752,7 +755,7 @@ export function renderCarDetails(id) {
           </div>
         </section>
 
-        ${renderSimilarCars(car)}
+        ${renderSimilarCars(car, carsData)}
       </div>
     </section>
   `;

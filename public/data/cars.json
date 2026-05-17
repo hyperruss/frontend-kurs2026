@@ -1,0 +1,440 @@
+[
+  {
+    "id": "mercedes-maybach-s680",
+    "category": "premium",
+    "images": [
+      "maybach-1.jpg",
+      "maybach-2.jpg",
+      "maybach-3.jpg",
+      "maybach-4.jpg"
+    ],
+    "collection": "season-hits",
+    "name": "Mercedes-Maybach S 680",
+    "price": 45000,
+    "priceLabel": "от 45 000 ₽",
+    "engine": "4.0 л",
+    "power": "503 л.с.",
+    "drive": "4Matic",
+    "initial": "S",
+    "className": "Премиум седан",
+    "status": "available"
+  },
+  {
+    "id": "rolls-royce-ghost",
+    "images": [
+      "rolls-royce-ghost-1.jpg",
+      "rolls-royce-ghost-2.jpg",
+      "rolls-royce-ghost-3.jpg",
+      "rolls-royce-ghost-4.jpg"
+    ],
+    "collection": "season-hits",
+    "name": "Rolls-Royce Ghost",
+    "price": 78000,
+    "priceLabel": "от 78 000 ₽",
+    "engine": "6.7 л",
+    "power": "571 л.с.",
+    "drive": "AWD",
+    "initial": "G",
+    "className": "Представительский",
+    "status": "available"
+  },
+  {
+    "id": "lamborghini-urus",
+    "images": [
+      "lamborghini-urus-1.jpg",
+      "lamborghini-urus-2.jpg",
+      "lamborghini-urus-3.jpg",
+      "lamborghini-urus-4.jpg"
+    ],
+    "collection": "season-hits",
+    "name": "Lamborghini Urus",
+    "price": 62000,
+    "priceLabel": "от 62 000 ₽",
+    "engine": "4.0 л",
+    "power": "650 л.с.",
+    "drive": "AWD",
+    "initial": "U",
+    "className": "Super SUV",
+    "status": "available"
+  },
+  {
+    "id": "mercedes-amg-g63",
+    "images": [
+      "mercedes-amg-g63-1.jpg",
+      "mercedes-amg-g63-2.jpg",
+      "mercedes-benz-g63-3.jpg",
+      "mercedes-benz-g63-4.jpg",
+      "mercedes-benz-g63-5.jpg"
+    ],
+    "collection": "season-hits",
+    "name": "Mercedes-AMG G 63",
+    "price": 55000,
+    "priceLabel": "от 55 000 ₽",
+    "engine": "4.0 л",
+    "power": "585 л.с.",
+    "drive": "4Matic",
+    "initial": "G",
+    "className": "Внедорожник",
+    "status": "available"
+  },
+  {
+    "id": "porsche-911-turbo-s",
+    "images": [
+      "2026_porsche_911_turbo_s_1_1600x1200.jpg",
+      "2026_porsche_911_turbo_s_2_1600x1200.jpg",
+      "2026_porsche_911_turbo_s_5_1600x1200.jpg",
+      "2026_porsche_911_turbo_s_19_1600x1200.jpg"
+    ],
+    "category": "sport",
+    "collection": "season-hits",
+    "name": "Porsche 911 Turbo S",
+    "price": 48000,
+    "priceLabel": "от 48 000 ₽",
+    "engine": "3.8 л",
+    "power": "650 л.с.",
+    "drive": "AWD",
+    "initial": "TS",
+    "className": "Спорткар",
+    "status": "available"
+  },
+  {
+    "id": "bentley-continental-gt",
+    "images": [
+      "bentley-continental-gt-1.jpg",
+      "bentley-continental-gt-2.jpg",
+      "bentley-continental-gt-3.jpg",
+      "bentley-continental-gt-4.jpg"
+    ],
+    "collection": "season-hits",
+    "name": "Bentley Continental GT",
+    "price": 69000,
+    "priceLabel": "от 69 000 ₽",
+    "engine": "4.0 л",
+    "power": "550 л.с.",
+    "drive": "AWD",
+    "initial": "GT",
+    "className": "Grand tourer",
+    "status": "available"
+  },
+  {
+    "id": "range-rover-sv",
+    "images": [
+      "2021_range_rover_svautobiography_ultimate_1_1600x1200.jpg",
+      "2021_range_rover_svautobiography_ultimate_2_1600x1200.jpg",
+      "2021_range_rover_svautobiography_ultimate_9_1600x1200.jpg",
+      "2021_range_rover_svautobiography_ultimate_12_1600x1200.jpg"
+    ],
+    "category": "suv",
+    "collection": "new-arrivals",
+    "name": "Range Rover SV",
+    "price": 44000,
+    "priceLabel": "от 44 000 ₽",
+    "engine": "4.4 л",
+    "power": "530 л.с.",
+    "drive": "AWD",
+    "initial": "SV",
+    "className": "Luxury SUV",
+    "status": "new"
+  },
+  {
+    "id": "bmw-m8-competition",
+    "images": [
+      "m8-1.jpg",
+      "m8-2.jpg",
+      "m8-3.jpg",
+      "m8-4.jpg"
+    ],
+    "category": "sport",
+    "collection": "new-arrivals",
+    "name": "BMW M8 Competition",
+    "price": 52000,
+    "priceLabel": "от 52 000 ₽",
+    "engine": "4.4 л",
+    "power": "625 л.с.",
+    "drive": "xDrive",
+    "initial": "M8",
+    "className": "Бизнес спорт",
+    "status": "new"
+  },
+  {
+    "id": "bentley-bentayga",
+    "images": [
+      "2026_bentley_bentayga_speed_1_1600x1200.jpg",
+      "2026_bentley_bentayga_speed_7_1600x1200.jpg",
+      "2026_bentley_bentayga_speed_16_1600x1200.jpg",
+      "2026_bentley_bentayga_speed_20_1600x1200.jpg"
+    ],
+    "category": "suv",
+    "collection": "new-arrivals",
+    "name": "Bentley Bentayga",
+    "price": 68000,
+    "priceLabel": "от 68 000 ₽",
+    "engine": "4.0 л",
+    "power": "550 л.с.",
+    "drive": "AWD",
+    "initial": "B",
+    "className": "Премиум SUV",
+    "status": "new"
+  },
+  {
+    "id": "tesla-cybertruck",
+    "images": [
+      "teslac-1.jpg",
+      "teslac-2.jpg",
+      "teslac-3.jpg",
+      "teslac-4.jpg"
+    ],
+    "collection": "new-arrivals",
+    "name": "Tesla Cybertruck",
+    "price": 49000,
+    "priceLabel": "от 49 000 ₽",
+    "engine": "Электро",
+    "power": "845 л.с.",
+    "drive": "AWD",
+    "initial": "CT",
+    "className": "Электромобиль",
+    "status": "new"
+  },
+  {
+    "id": "aston-martin-db12",
+    "images": [
+      "2026_aston_martin_db12_s_1_1600x1200.jpg",
+      "2026_aston_martin_db12_s_4_1600x1200.jpg",
+      "2026_aston_martin_db12_s_18_1600x1200.jpg",
+      "2026_aston_martin_db12_s_22_1600x1200.jpg"
+    ],
+    "category": "sport",
+    "collection": "new-arrivals",
+    "name": "Aston Martin DB12",
+    "price": 74000,
+    "priceLabel": "от 74 000 ₽",
+    "engine": "4.0 л",
+    "power": "680 л.с.",
+    "drive": "RWD",
+    "initial": "DB",
+    "className": "Super tourer",
+    "status": "new"
+  },
+  {
+    "id": "rolls-royce-cullinan-black-badge",
+    "images": [
+      "rolls-royce_cullinan-1.jpg",
+      "rolls-royce_cullinan_2.jpg",
+      "rolls-royce_cullinan_series_3.jpg",
+      "rolls-royce_cullinan_4.jpg"
+    ],
+    "category": "suv",
+    "collection": "influencers",
+    "name": "Rolls-Royce Cullinan Black Badge",
+    "price": 95000,
+    "priceLabel": "от 95 000 ₽",
+    "engine": "6.7 л",
+    "power": "600 л.с.",
+    "drive": "AWD",
+    "initial": "BB",
+    "className": "Statement SUV",
+    "status": "available"
+  },
+  {
+    "id": "lamborghini-huracan-spyder",
+    "images": [
+      "2024_lamborghini_huracan_sterrato_34_1600x1200.jpg",
+      "2024_lamborghini_huracan_sterrato_37_1600x1200.jpg",
+      "2024_lamborghini_huracan_sterrato_38_1600x1200.jpg",
+      "2024_lamborghini_huracan_sterrato_63_1600x1200.jpg"
+    ],
+    "category": "sport",
+    "collection": "influencers",
+    "name": "Lamborghini Huracan EVO Spyder",
+    "price": 86000,
+    "priceLabel": "от 86 000 ₽",
+    "engine": "5.2 л",
+    "power": "640 л.с.",
+    "drive": "AWD",
+    "initial": "H",
+    "className": "Кабриолет",
+    "status": "available"
+  },
+  {
+    "id": "mercedes-v-class-vip",
+    "images": [
+      "2019-Mercedes-Benz-V-Class-EXCLUSIVE-Line-(Color-Selenit-Grey-Metallic)---Front-Three-Quarter-187519-1600x1200.jpg",
+      "2019-Mercedes-Benz-V-Class-EXCLUSIVE-Line-(Color-Selenit-Grey-Metallic)---Front-187493-1600x1200.jpg",
+      "2019-Mercedes-Benz-V-Class-EXCLUSIVE-Line---Interior,-Seats-187528-1600x1200.jpg",
+      "2019-Mercedes-Benz-V-Class-EXCLUSIVE-Line---Interior,-Cockpit-187525-1600x1200.jpg"
+    ],
+    "category": "minivan",
+    "collection": "influencers",
+    "name": "Mercedes-Benz V-Class VIP",
+    "price": 32000,
+    "priceLabel": "от 32 000 ₽",
+    "engine": "2.0 л",
+    "power": "239 л.с.",
+    "drive": "4Matic",
+    "initial": "V",
+    "className": "Гримерка на колесах",
+    "status": "available"
+  },
+  {
+    "id": "ferrari-296-gts",
+    "images": [
+      "2023_ferrari_296_gts_1_1600x1200.jpg",
+      "2023_ferrari_296_gts_5_1600x1200.jpg",
+      "2023_ferrari_296_gts_7_1600x1200.jpg",
+      "2023_ferrari_296_gts_10_1600x1200.jpg"
+    ],
+    "category": "sport",
+    "collection": "influencers",
+    "name": "Ferrari 296 GTS",
+    "price": 98000,
+    "priceLabel": "от 98 000 ₽",
+    "engine": "3.0 л",
+    "power": "830 л.с.",
+    "drive": "RWD",
+    "initial": "296",
+    "className": "Hybrid spider",
+    "status": "available"
+  },
+  {
+    "id": "lexus-lm",
+    "images": [
+      "2024_lexus_lm_1_1600x1200.jpg",
+      "2024_lexus_lm_2_1600x1200.jpg",
+      "2024_lexus_lm_14_1600x1200.jpg",
+      "2024_lexus_lm_50_1600x1200.jpg"
+    ],
+    "category": "minivan",
+    "collection": "influencers",
+    "name": "Lexus LM",
+    "price": 35000,
+    "priceLabel": "от 35 000 ₽",
+    "engine": "3.5 л",
+    "power": "300 л.с.",
+    "drive": "AWD",
+    "initial": "LM",
+    "className": "Премиум минивэн",
+    "status": "available"
+  },
+  {
+    "id": "volkswagen-multivan",
+    "images": [
+      "2022_volkswagen_multivan_1_1600x1200.jpg",
+      "2022_volkswagen_multivan_3_1600x1200.jpg",
+      "2022_volkswagen_multivan_6_1600x1200.jpg",
+      "2022_volkswagen_multivan_9_1600x1200.jpg"
+    ],
+    "category": "minivan",
+    "collection": "influencers",
+    "name": "Volkswagen Multivan Business",
+    "price": 22000,
+    "priceLabel": "от 22 000 ₽",
+    "engine": "2.0 л",
+    "power": "204 л.с.",
+    "drive": "4Motion",
+    "initial": "MV",
+    "className": "Бизнес минивэн",
+    "status": "available"
+  },
+  {
+    "id": "porsche-taycan-turbo",
+    "images": [
+      "2025_porsche_taycan_1_1600x1200.jpg",
+      "2025_porsche_taycan_8_1600x1200.jpg",
+      "2025_porsche_taycan_10_1600x1200.jpg",
+      "2025_porsche_taycan_11_1600x1200.jpg",
+      "2025_porsche_taycan_12_1600x1200.jpg"
+    ],
+    "category": "electric",
+    "collection": "new-arrivals",
+    "name": "Porsche Taycan Turbo S",
+    "price": 42000,
+    "priceLabel": "от 42 000 ₽",
+    "engine": "Электро",
+    "power": "761 л.с.",
+    "drive": "AWD",
+    "initial": "T",
+    "className": "Электро спорт",
+    "status": "available"
+  },
+  {
+    "id": "audi-s6-sportback-e-tron",
+    "images": [
+      "2027_audi_s6_sportback_e-tron_1_1600x1200.jpg",
+      "2027_audi_s6_sportback_e-tron_4_1600x1200.jpg",
+      "2027_audi_s6_sportback_e-tron_14_1600x1200.jpg",
+      "2027_audi_s6_sportback_e-tron_17_1600x1200.jpg"
+    ],
+    "category": "electric",
+    "collection": "new-arrivals",
+    "name": "Audi S6 Sportback e-tron",
+    "price": 40000,
+    "priceLabel": "от 40 000 ₽",
+    "engine": "Электро",
+    "power": "646 л.с.",
+    "drive": "Quattro",
+    "initial": "S6",
+    "className": "Электро купе",
+    "status": "available"
+  },
+  {
+    "id": "porsche-panamera",
+    "images": [
+      "2024_porsche_panamera_1_1600x1200.jpg",
+      "2024_porsche_panamera_2_1600x1200.jpg",
+      "2024_porsche_panamera_12_1600x1200.jpg",
+      "2024_porsche_panamera_15_1600x1200.jpg",
+      "2024_porsche_panamera_16_1600x1200.jpg"
+    ],
+    "category": "business",
+    "collection": "new-arrivals",
+    "name": "Porsche Panamera 4S",
+    "price": 38000,
+    "priceLabel": "от 38 000 ₽",
+    "engine": "2.9 л",
+    "power": "440 л.с.",
+    "drive": "AWD",
+    "initial": "P",
+    "className": "Бизнес купе",
+    "status": "available"
+  },
+  {
+    "id": "audi-a6",
+    "images": [
+      "2024_audi_a6_1_1600x1200.jpg",
+      "2024_audi_a6_4_1600x1200.jpg",
+      "2024_audi_a6_6_1600x1200.jpg",
+      "2024_audi_a6_10_1600x1200.jpg"
+    ],
+    "category": "business",
+    "collection": "new-arrivals",
+    "name": "Audi A6",
+    "price": 26000,
+    "priceLabel": "от 26 000 ₽",
+    "engine": "3.0 л",
+    "power": "340 л.с.",
+    "drive": "Quattro",
+    "initial": "A6",
+    "className": "Бизнес седан",
+    "status": "available"
+  },
+  {
+    "id": "bmw-5-series",
+    "images": [
+      "2024_bmw_5-series_phev_1_1600x1200.jpg",
+      "2024_bmw_5-series_phev_6_1600x1200.jpg",
+      "2024_bmw_5-series_phev_25_1600x1200.jpg",
+      "2024_bmw_5-series_phev_48_1600x1200.jpg"
+    ],
+    "category": "business",
+    "collection": "new-arrivals",
+    "name": "BMW 5 Series",
+    "price": 28000,
+    "priceLabel": "от 28 000 ₽",
+    "engine": "3.0 л",
+    "power": "340 л.с.",
+    "drive": "xDrive",
+    "initial": "5",
+    "className": "Бизнес седан",
+    "status": "available"
+  }
+]

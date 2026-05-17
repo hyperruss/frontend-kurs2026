@@ -42,18 +42,18 @@ function renderRoute({ isHistoryNavigation = false } = {}) {
 
   app.classList.remove('app-shell--visible');
 
-  window.requestAnimationFrame(() => {
+  window.requestAnimationFrame(async () => {
     if (pathname === '/' || pathname === '') {
-      app.innerHTML = renderHome();
+      app.innerHTML = await renderHome();
       initHomePage();
       afterRenderCallback({ route: 'home' });
       scrollAfterRender(hash, isHistoryNavigation);
     } else if (pathname === '/car' || pathname === '/car/') {
-      app.innerHTML = renderFleetPage();
+      app.innerHTML = await renderFleetPage();
       afterRenderCallback({ route: 'fleet' });
       if (!isHistoryNavigation) window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (carMatch) {
-      app.innerHTML = renderCarDetails(decodeURIComponent(carMatch[1]));
+      app.innerHTML = await renderCarDetails(decodeURIComponent(carMatch[1]));
       afterRenderCallback({ route: 'car', id: decodeURIComponent(carMatch[1]) });
       if (!isHistoryNavigation) window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (pathname === '/rent-conditions' || pathname === '/rent-conditions/') {
@@ -66,7 +66,7 @@ function renderRoute({ isHistoryNavigation = false } = {}) {
       if (!isHistoryNavigation) window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       window.history.replaceState({}, '', '/');
-      app.innerHTML = renderHome();
+      app.innerHTML = await renderHome();
       initHomePage();
       afterRenderCallback({ route: 'home' });
     }
