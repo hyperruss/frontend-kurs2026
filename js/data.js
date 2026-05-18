@@ -8,7 +8,9 @@ let carsDataPromise;
 
 export async function fetchCarsData() {
   if (!carsDataPromise) {
-    carsDataPromise = fetch('/data/cars.json')
+    const dataUrl = `${import.meta.env.BASE_URL}data/cars.json`;
+
+    carsDataPromise = fetch(dataUrl)
       .then(response => {
         if (!response.ok) {
           throw new Error(`Не удалось загрузить данные автомобилей: ${response.status}`);
